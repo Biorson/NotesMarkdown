@@ -127,5 +127,50 @@ sendStatus(int):void
 * 任何特定Servlet类都只有一个实例
 * GenericServlet类实现了Servlet接口
 * 总是先调用response.setContenetType(),再调用获得输出流（getWriter()/getOutPutStream()）,这样可避免内容类型（MIME）和输出流之间的冲突
-* ServletOutputStream输出字节数据，PrintWriter输出字符数据
+* ServletOutputStream.write(byte[])输出字节数据，PrintWriter.println(String)输出字符数据
 
+
+
+#### 关于HTTP响应
+
+* setHeader(name,value) / addHeader(name,value) 两者的==共同点：若不存在首部，都将新增一个首部；区别：若存在首部，set将替换原值，add将增加一个新值，即name:value1,value2==
+
+
+
+##### 重定向sendRedirect(String url) -- 客户
+
+* 客户会注意到浏览器URL改变
+
+* url 可使用绝对路径和相对路径，使用相对路径时，注意是否以"==/=="开头
+
+  ```
+  客户访问的url:http://www.bior.com/myapp/app1/bar.do
+  
+  重定向时url: foo/stuff.html
+  客户将访问：http://www.bior.com/myapp/app1/foo/stuff.html
+  
+  重定向时url: /foo/stuff.html
+  客户将访问：http://www.bior.com/foo/stuff.html
+  
+  是否以“/”开头，决定当前web容器（www.bior.com）是否请求于原来的url，即决定foo是否为一个新的web应用
+  ```
+
+* 不能在写到响应之后再调用sendRedirect()，否则会抛出异常IllegalStateException，这里的提交指的调用输出流的wirte()/println()/flush()方法
+
+
+
+##### 请求分派 -- 服务器
+
+```JAVA
+RequestDispatcher view = request.getRequestDispatcher("result.jsp");
+view.forward(request,response);
+```
+
+* 请求分派，发生在服务器端
+
+
+
+##### 两者区别
+
+* 请求分派发生在服务器端，重定向在客户端进行。
+* 请求分派把请求传递给服务器上的另一个组件（通常在同一个Web应用中）。重定向只是告诉浏览器去访问另一个URL
