@@ -5,5 +5,5 @@
 
 :books: 书籍列表
 
-:bookmark:	[高性能MySQL](../books/高性能MySQL.md)  2020-02-04-至今
+:bookmark:	[高性能MySQL](/books/高性能MySQL.md)	:date: 2020-02-04-至今
 
