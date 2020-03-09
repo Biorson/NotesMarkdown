@@ -96,6 +96,42 @@
 
   ​	**2. 索引枯萎(Index Browning)**
 
+  B-Tree对索引列是顺序组织存储的，所以很适合查找范围数据
+
+  假设有如下数据表
+
+  ```mysql
+  CREATE TABLE people (
+  last_name VARCHAR ( 50 ) NOT NULL,
+  first_name VARCHAR ( 50 ) NOT NULL,
+  dob date NOT NULL,
+  gender enum ( 'm', 'f' ) NOT NULL,
+  KEY ( last_name, first_name, dob ) 
+  );
+  ```
+
+  **索引对多个值进行排序的依据是CREATE TABLE语句中定义索引时列的顺序**
+
+  B-Tree索引适用于全键值、键值范围或键前缀查找，其中键前缀查找只适用于根据最左前缀的查找。具体对应如下类型：
+
+  **全值匹配**
+
+  ​	全值匹配指的是和索引中所有列进行匹配，可用于查找姓名为Cuba Allen、出生	于1987-09-09的人
+
+  **匹配最左前缀**
+
+  ​	可用于查找所有姓为Allen的人，即使用索引的第一列
+
+  **匹配列前缀**
+
+  ​	也可以使用某一列值的开头部分。查找所有以A开头的姓的人，也只用到索引的第	一列
+
+  **匹配范围值**
+
+  ​	可用于查找姓在Allen和Bruce之间的人，也只用到索引的第一列
+
+  
+
 
 
 
