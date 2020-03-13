@@ -271,4 +271,54 @@ B-Tree索引的限制：
   
   诀窍在于要选择足够长的前缀以保证较高的选择性，同时又不能太长（以便节约空间）。
   
-  **决定前缀的合适长度，需要找到最常见的值的列表，然后和最常见的前缀列表来进行比较。**通过例子演示：
+  **决定前缀的合适长度，需要找到最常见的值的列表，然后和最常见的前缀列表来进行比较。**通过`city_demo表`来演示：
+  
+  1.计算完整列的选择性：
+  
+  `select count(distinct city)/count(*) form city_demo;`
+  
+  | count(distinct city)/count(*) |
+  | ----------------------------- |
+  | 0.0312                        |
+  
+  2.计算不同前缀长度的选择性
+  
+  ```mysql
+  select count(distinct left(city,3))/count(*) as sel3,
+  	count(distinct left(city,4))/count(*) as sel4,
+  	count(distinct left(city,5))/count(*) as sel5,
+  	count(distinct left(city,6))/count(*) as sel6,
+  	count(distinct left(city,7))/count(*) as sel7 
+  	form city_demo;
+  ```
+  
+  | sel3   | sel4   | sel5   | sel6   | sel7   |
+  | ------ | ------ | ------ | ------ | ------ |
+  | 0.0239 | 0.0293 | 0.0305 | 0.0309 | 0.0310 |
+  
+  3.单看上面前缀长度的平均选择性还是不够，还要确保数据分布均匀
+  
+  `mysql> select count(*) as cnt,city from city_demo group by city order by cnt desc limit 10;`
+  
+  | cnt  | city           |
+  | ---- | -------------- |
+  | 65   | London         |
+  | 49   | Hiroshima      |
+  | 48   | Teboksary      |
+  | 48   | Pak Kret       |
+  | 47   | Tel Aviv-Jaffa |
+  | 47   | Shimoga        |
+  | 45   | Cabuyao        |
+  | 45   | Callao         |
+  | 45   | Bislig         |
+  
+  4.创建前缀索引：
+  
+  `alter table city_demo add key(city(7));`
+  
+  前缀索引可以使索引更小、更快，但是无法使用前缀索引做order by 和 group by,也无法使用前缀索引做覆盖扫描。
+  
+* 多列索引
+
+  
+
