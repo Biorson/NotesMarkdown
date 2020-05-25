@@ -69,3 +69,5 @@ java8
 jabva
 
 大号打
+
+steam
