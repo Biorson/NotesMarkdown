@@ -83,7 +83,43 @@ Optional<Dish> lightest = menuStream
 Optional<Dish> lightest = menuStream
                        .collect(reducing(0,Dish::getCalories,Integer:sum));
 初始值 T
-转换函数(R) -> T
-累加函数(T,T)-> T
+转换函数 (R) -> T
+累加函数 (T,T) -> T
 
 ```
+
+#### collectingAndThen
+
+返回类型：转换函数返回的类型
+
+用途：包裹另一个收集器，对其结果应用转换函数
+
+```java
+int howManyDishes = menuStream.collect(collectingAndThen(toList(),List::size));
+```
+
+#### groupingBy
+
+返回类型：Map<K,List<T>>
+
+用途：根据项目的一个属性的值对流中的项目作分组，并将属性值作为结果Map的键
+
+```java
+Map<Dish.Type,List<Dish> dishesByType = menuStream.collect(
+    									groupingBy(Dish::getType,toList())
+										);
+// toList()可以省略；
+```
+
+#### partitioningBy
+
+返回类型：Map<Boolean,List<T>>
+
+用途：根据对流中每个项目应用谓词的结果（true/false）来对项目进行分区
+
+```java
+Map<Boolean,List<Dish>> dishes = menuStream.collect(
+									partitioningBy(Dish::isVegetarain,toList()));
+// toList()可省
+```
+
