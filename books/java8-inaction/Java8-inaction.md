@@ -123,3 +123,6 @@ Map<Boolean,List<Dish>> dishes = menuStream.collect(
 // toList()可省
 ```
 
+
+
+## 高效Java8
