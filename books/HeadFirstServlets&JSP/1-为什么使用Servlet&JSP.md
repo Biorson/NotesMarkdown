@@ -38,11 +38,11 @@ Cookie: JSESSIONKEY=1a2b3a3f-cefb-4f7c-b62d-125ff09e80f1
 
 ```http
 POST /channelOrg/updateChannelOrg HTTP/1.1
-Host: crm-web-216.hrlyit.com
+Host: crm-web-216.baidu.com
 Connection: keep-alive
 Content-Length: 438
 Accept: application/json, text/plain, */*
-Origin: https://crm-web-216.hrlyit.com
+Origin: https://crm-web-216.baidu.com
 X-Requested-With: XMLHttpRequest
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36
 Content-Type: application/json;charset=UTF-8
