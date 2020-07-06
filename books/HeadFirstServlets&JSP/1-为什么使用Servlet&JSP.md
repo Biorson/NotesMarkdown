@@ -51,7 +51,7 @@ Accept-Encoding: gzip, deflate, br
 Accept-Language: zh-CN,zh;q=0.9
 Cookie: JSESSIONKEY=6a521f55-0d5d-4404-afd8-5409036f2043
 
-{"acctName":"河北乐言电子科技有限公司","acctNo":"50358801040004243","bankName":"中国农业银行石家庄联城支行","checkingEmail":"15903114567@139.com","checkingPerson":"李晓娟","checkingPersonPhone":"13032656118","channelType":"ENTERPRISE_AGENT","id":1702,"name":"河北乐言电子科技有限公司","status":"Y","remark":null,"llsChannelManagerId":2029,"agentProvince":null,"agentCity":null,"agentIdentity":null}
+{"acctName":"河北乐言电子科技有限公司","acctNo":"50358801040004243","bankName":"中国农业银行石家庄联城支行","checkingEmail":"15903114567@139.com","checkingPerson":"李晓娟","checkingPersonPhone":"13032656118","channelType":"ENTERPRISE_AGENT","id":1702,"name":"河北乐言电子科技有限公司","status":"Y","remark":null,"channelManagerId":2029,"agentProvince":null,"agentCity":null,"agentIdentity":null}
 ```
 
 #### 响应
