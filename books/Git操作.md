@@ -17,11 +17,11 @@ ssh-keygen -t rsa
 ##远程代码-->本地(可选择分支)
 
 ```shell
-git clone git@git.hrlyit.com:scf/scf-batch.git
+git clone git@git.xxx.com:scf/scf-batch.git
 ```
 
 ```shell
-git clone -b dev-v2.0.0 git@git.hrlyit.com:scf/scf-rules.git
+git clone -b dev-v2.0.0 git@git.xxx.com:scf/scf-rules.git
 ```
 
 
@@ -83,6 +83,6 @@ git reset
 ## 更换远程仓库地址
 
 ```shell
-git remote set-url origin git@git.hrlyit.com:fengsibo/lls-bee-base-1.0.0.git
+git remote set-url origin git@git.xxxx.com:xxxx/xxxx.git
 ```
 
